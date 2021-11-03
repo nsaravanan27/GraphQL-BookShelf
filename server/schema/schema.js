@@ -1,5 +1,7 @@
 const graphql = require('graphql');
 const _ = require('lodash');
+const Book = require('../models/book');
+const Author = require('../models/author');
 
 const { GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLString, GraphQLSchema } = graphql;
 
@@ -12,7 +14,7 @@ const books = [
 ];
 
 const authors = [
-  {id:'1', name: 'Author 1', age: 32, bookId: 1},
+  {id:'1', name: 'Author 1', age: 32},
   {id:'2', name: 'Author 2', age: 53},
   {id:'3', name: 'Author 3', age: 45},
 ];
