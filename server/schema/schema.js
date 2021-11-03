@@ -8,10 +8,11 @@ const books = [
   {id:'1', name: 'BOOK 1', genre: 'Sci-fi', authorId: '1'},
   {id:'2', name: 'BOOK 2', genre: 'Action', authorId: '2'},
   {id:'3', name: 'BOOK 3', genre: 'Adventure', authorId: '3'},
+  {id:'4', name: 'BOOK 4', genre: 'Fun', authorId: '3'},
 ];
 
 const authors = [
-  {id:'1', name: 'Author 1', age: 32},
+  {id:'1', name: 'Author 1', age: 32, bookId: 1},
   {id:'2', name: 'Author 2', age: 53},
   {id:'3', name: 'Author 3', age: 45},
 ];
@@ -36,7 +37,13 @@ const AuthorType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    age: { type: GraphQLInt }
+    age: { type: GraphQLInt },
+    book: {
+      type: new graphql.GraphQLList(BookType),
+      resolve(parent, args) {
+        return _.filter(books, {authorId: parent.id})
+      }
+    }
   })
 });
 
